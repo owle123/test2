@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>SpringMVCDay01</display-name>
+
+
+	<!-- SpringMVC的前段控制器 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- contextConfigLocation配置是加载配置文件 默认是从/WEB-INF/servlet名称-servlet.xml  springmvc-servlet.xml
+			需要从指定的根目录进行加载
+		-->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springmvc.xml</param-value>
+		</init-param>
+		<!-- 表示在启动程序的时候自动执行 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<!-- 
+			这里配置的是拦截的路径
+			第一种是 *.action 或者 *.do 表示以.action 或者.do 结尾的由DispatchServlet进行解析
+			第二种是/ 表示访问的所有内容都是由 DispactchServlet进行解析 
+			第三种是/*  注意这里这样的配置会导致出错。 所以不推荐使用    但是可以在外层嵌套
+		 -->
+		<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
+
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
